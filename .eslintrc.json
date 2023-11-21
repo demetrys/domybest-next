@@ -1,0 +1,127 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "airbnb",
+    "airbnb-typescript",
+    "prettier",
+    "eslint:recommended",
+    "plugin:import/typescript",
+    "plugin:prettier/recommended",
+    "plugin:@typescript-eslint/recommended",
+    "next"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "prettier",
+    "jsx-a11y",
+    "simple-import-sort"
+  ],
+  "rules": {
+    "jsx-quotes": [2, "prefer-single"],
+    "react/react-in-jsx-scope": "off",
+    "no-param-reassign": "off",
+    "react/function-component-definition": [2, {"namedComponents": "arrow-function"}],
+    "import/prefer-default-export": "off",
+    "arrow-body-style": ["error", "as-needed"],
+    "react/require-default-props": "off",
+    "react/jsx-props-no-spreading": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/naming-convention": "off",
+    "no-console": ["warn", {
+      "allow": ["warn", "error"]
+    }],
+    "import/no-relative-parent-imports": [
+      "error",
+      {
+        "ignore": [
+          "^components$",
+          "^components/",
+          "^redux",
+          "^styles",
+          "^types",
+          "^hooks",
+          "^helpers",
+          "^app",
+          "^assets",
+          "^validators",
+          "^utils",
+          "^web3",
+          "^(?!.*(\\.\\./){2,}).*$"
+        ]
+      }
+    ],
+    "simple-import-sort/imports": [
+      "error",
+      {
+        "groups": [
+          [
+            "^react",
+            "^@?\\w"
+          ],
+          [
+            "^@emotion",
+            "^@chakra"
+          ],
+          ["routes"],
+          [
+            "^hooks",
+            "^store",
+            "^store/hooks",
+            "^store/actions",
+            "^store/reducers"
+          ],
+          ["^helpers", "^utils"],
+          ["^constants", "^types"],
+          ["^assets"],
+          ["^validators"],
+          ["^styles"],
+          [
+            "^(@|components)(/.*|$)",
+            "^pages",
+            "^./components",
+            "^\\.\\.(?!/?$)",
+            "^\\.\\./?$",
+            "^\\./(?=.*/)(?!/?$)",
+            "^\\.(?!/?$)",
+            "^\\./?$"
+          ],
+          ["^\\u0000"],
+          ["^.+\\.?(schema)$"],
+          ["^(?!swiper).*\\.(css|styled)$"]
+        ]
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["src/components/**/*Table.tsx", "src/pages/**/*Table.tsx"],
+      "rules": {
+        "react/no-unstable-nested-components": "off"
+      }
+    },
+    {
+      "files": ["src/components/exam/AnnotationWrapper/AnnotationWrapper.tsx"],
+      "rules": {
+        "react/no-danger": "off"
+      }
+    },
+    {
+      "files": ["src/@types/**/*.d.ts"],
+      "rules": {
+        "@typescript-eslint/no-explicit-any": "off"
+      }
+    }
+  ]
+}

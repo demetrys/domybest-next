@@ -1,0 +1,11 @@
+export { DetectDevice } from './DetectDevice';
+export { ScoreReportForm } from './ScoreReportForm';
+export { PerformTest } from './PerformTest';
+export { SaveExam } from './SaveExam';
+export { FinishExam } from './FinishExam';
+export { RestartExam } from './RestartExam';
+export { ResumeError } from './ResumeError';
+export { LearnerEdit } from './LearnerEdit';
+export { PauseTest } from './PauseTest';
+export { StartTest } from './StartTest';
+export { AttendanceValidation } from './AttendanceValidation';

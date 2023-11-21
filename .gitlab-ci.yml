@@ -1,0 +1,49 @@
+---
+stages:
+  #  - linters
+  - build
+  - deploy
+
+build_dev:
+  stage: build
+  tags:
+    - sat-prep-platform-dev
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - scripts/build.sh
+  only:
+    - dev
+
+deploy_dev:
+  stage: deploy
+  tags:
+    - sat-prep-platform-dev
+  dependencies:
+    - build_dev
+  before_script:
+    - docker login -u "$CI_REGISTRY_USER" -p "$CI_REGISTRY_PASSWORD" $CI_REGISTRY
+  script:
+    - scripts/deploy.sh
+  only:
+    - dev
+
+build_do:
+  stage: build
+  tags:
+    - sat-prep-do
+  script:
+    - scripts/build_do.sh
+  rules:
+    - if: "$CI_COMMIT_TAG =~ /^r.*$/"
+
+deploy_do:
+  stage: deploy
+  tags:
+    - sat-prep-do
+  dependencies:
+    - build_do
+  script:
+    - scripts/deploy_do.sh
+  rules:
+    - if: "$CI_COMMIT_TAG =~ /^r.*$/"
